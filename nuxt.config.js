@@ -1,5 +1,9 @@
-export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
+import { defineNuxtConfig } from '@nuxt/bridge'
+
+//https://v3.nuxtjs.org/bridge/overview/
+export default defineNuxtConfig({
+  bridge: true, // Temporarily disable bridge integration
+  // Global page headers: https://go.nuxtjs.dev/config-head'
   head: {
     title: 'ddd-web',
     htmlAttrs: {
@@ -22,25 +26,40 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/client-api',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-  ssr: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
   ],
-
+  generate: {
+    // composition-api -> choose to suit your project
+    // @nuxtjs/composition-api/module 비동기 문제로 추가
+    interval: 2000,
+    cache: {
+      // ignore: ['renovate.json'] // ignore changes applied on this file
+    }
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
+  ssr: false,
+  publicRuntimeConfig: {
+    // BASE_URL: '/ddd-web.github.io',
+    axios: {
+      // baseURL: ''
+    }
+  },
   target: 'static',
   router: {
-    base: '/ddd-web.github.io/'
+    // base: '/ddd-web.github.io/'
   }
-}
+})

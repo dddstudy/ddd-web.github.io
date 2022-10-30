@@ -70,6 +70,7 @@ typings/
 
 # Nuxt generate
 dist
+.output/*
 
 # vuepress build output
 .vuepress/dist
@@ -88,3 +89,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+
+# firebase
+.firebase

@@ -24,6 +24,12 @@ export default defineNuxtConfig({
   css: [
   ],
 
+  /*@nuxtjs/style-resources*/
+  styleResources: {
+    //array of strings that are paths to the file:
+    scss: ['~/assets/styles/common.scss']
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/client-api',
@@ -46,6 +52,8 @@ export default defineNuxtConfig({
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@pinia/nuxt',
+    '@nuxtjs/style-resources',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

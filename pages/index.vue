@@ -1,14 +1,36 @@
 <template>
   <div>
-    <h1>aaaa</h1>
-    <img style="width: 100px; height: auto;" v-for="(item, idx) of list" :key="idx" :src="item.download_url">
+    <h1>DDD 공식 홈페이지 프로젝트</h1>
+    <div>
+      <p v-if="loading">Loading posts...</p>
+      <p v-if="error">{{ error.message }}</p>
+      <ul class="main">
+        <li v-if="mocks" v-for="(mock,idx) in mocks" :key="mock.id">
+          <p>{{ mock.author }}</p>
+          <img :class="`main__img main__img--${idx}`" :src="mock.download_url"/>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { LIST } from "~/store/test/constants";
-const { $store: { dispatch, getters } } = useNuxtApp();
 
-dispatch(`test/${LIST}`);
-const list = computed(() => getters[`test/${LIST}`]);
+import { useMockStore } from "~/store/piniaTest/mock"
+import { storeToRefs } from 'pinia'
+
+const { mocks, loading, error } = storeToRefs(useMockStore())
+const { fetchMocks } = useMockStore();
+
+fetchMocks();
 </script>
+<style scoped>
+.main{
+  display: flex;
+  justify-content: center;
+}
+.main__img{
+  width:100px;
+  height: auto;
+}
+</style>

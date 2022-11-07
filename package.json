@@ -8,22 +8,47 @@
     "start": "nuxi preview",
     "generate": "nuxt generate",
     "firebase-deploy": "firebase deploy --only hosting:ddd-web",
-    "git-deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "git-deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "format": "prettier --write '**/*.{js,vue}'",
+    "lint-fix:eslint": "eslint --fix \"./**/*.{js,vue}\" --ignore-path .gitignore",
+    "lint-fix:prettier": "prettier --write \"./**/*.{js,vue}\" --ignore-path .gitignore",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "yarn lint-fix:eslint",
+      "yarn lint-fix:prettier"
+    ]
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.19.1",
     "@nuxtjs/axios": "^5.13.6",
     "@pinia/nuxt": "^0.4.3",
     "core-js": "^3.25.3",
+    "eslint-plugin-vue": "^9.7.0",
     "firebase": "^9.12.1",
     "nuxt-edge": "latest",
     "pinia": "^2.0.23",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
-    "vue-template-compiler": "^2.7.10"
+    "vue-template-compiler": "^2.7.10",
+    "vue3-styled-components": "^1.2.1"
   },
   "devDependencies": {
     "@nuxt/bridge": "npm:@nuxt/bridge-edge",
     "@nuxtjs/style-resources": "^1.2.1",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "push-dir": "^0.4.1"
   }
 }

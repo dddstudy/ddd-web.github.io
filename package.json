@@ -21,8 +21,8 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "npm lint-fix:eslint",
-      "npm lint-fix:prettier"
+      "yarn lint-fix:eslint",
+      "yarn lint-fix:prettier"
     ]
   },
   "dependencies": {

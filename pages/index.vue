@@ -1,11 +1,15 @@
 <template>
   <div>
     <h1>DDD 공식 홈페이지 프로젝트</h1>
-    <div>
+    <div class="main">
       <p v-if="loading">Loading posts...</p>
       <p v-if="error">{{ error.message }}</p>
-      <ul class="main">
-        <li v-for="(mock, idx) in mocks" v-if="mocks" :key="mock.id">
+      <ul class="main__list">
+        <li
+          v-for="(mock, idx) in mocks"
+          :key="mock.id"
+          class="main__list--item"
+        >
           <p>{{ mock.author }}</p>
           <img
             :class="`main__img main__img--${idx}`"
@@ -26,13 +30,15 @@ const { fetchMocks } = useMockStore();
 
 fetchMocks();
 </script>
-<style scoped>
+<style lang="scss">
 .main {
   display: flex;
   justify-content: center;
-}
-.main__img {
-  width: 100px;
-  height: auto;
+  &__list {
+    color: gray;
+    &--item {
+      margin: 0 auto;
+    }
+  }
 }
 </style>

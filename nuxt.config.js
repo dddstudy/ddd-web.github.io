@@ -31,10 +31,13 @@ export default defineNuxtConfig({
   plugins: ["~/plugins/client-api"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: {
+    global: true,
+    dirs: ["~/components"],
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ["@nuxtjs/style-resources"],
   generate: {
     // composition-api -> choose to suit your project
     // @nuxtjs/composition-api/module 비동기 문제로 추가
@@ -49,10 +52,12 @@ export default defineNuxtConfig({
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   ssr: false,
-  publicRuntimeConfig: {
-    // BASE_URL: '/ddd-web.github.io',
-    axios: {
-      // baseURL: ''
+  runtimeConfig: {
+    // apiKey: process.env.NUXT_API_KEY || "super-secret-key",
+    public: {
+      axios: {
+        // baseURL: ''
+      },
     },
   },
   target: "static",

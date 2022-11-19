@@ -16,14 +16,8 @@ export const useMockStore = defineStore("mocks", {
   actions: {
     async fetchMocks() {
       this.loading = true;
-      try {
-        const { data } = await axios.get("https://picsum.photos/v2/list");
-        this.mocks = data;
-      } catch (error) {
-        this.error = error;
-      } finally {
-        this.loading = false;
-      }
+      const { data } = await axios.get("https://picsum.photos/v2/list");
+      this.mocks = data;
     },
   },
 });

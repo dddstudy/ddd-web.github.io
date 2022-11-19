@@ -1,14 +1,15 @@
 <template>
   <main class="ddd-layout">
-    <header>header</header>
-    <Nuxt />
-    <footer>footer</footer>
+    <Suspense>
+      <header>header</header>
+      <Nuxt />
+      <template></template>
+      <footer>footer</footer>
+    </Suspense>
   </main>
 </template>
 
 <script setup>
-import { useHead } from "@nuxt/bridge/dist/runtime/head";
-
 useHead({
   title: "DDD",
   htmlAttrs: {
